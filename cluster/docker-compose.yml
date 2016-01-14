@@ -1,0 +1,36 @@
+rabbit-ha:
+  build: ../haproxy/.
+  hostname: rabbit-ha
+  links:
+    - rabbit1
+    - rabbit2
+    - rabbit3
+  ports:
+    - "1936:1936"
+    - "8080:8080"
+    - "1883:1883"
+    - "5672:5672"
+
+rabbit1:
+  image: bijukunjummen/rabbitmq-server
+  hostname: rabbit1
+
+rabbit2:
+  image: bijukunjummen/rabbitmq-server
+  hostname: rabbit2
+  links:
+    - rabbit1
+  environment: 
+    - CLUSTERED=true
+    - CLUSTER_WITH=rabbit1
+    - RAM_NODE=true
+
+rabbit3:
+  image: bijukunjummen/rabbitmq-server
+  hostname: rabbit3
+  links:
+    - rabbit1
+    - rabbit2
+  environment: 
+    - CLUSTERED=true
+    - CLUSTER_WITH=rabbit1   
