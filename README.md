@@ -1,21 +1,33 @@
 # docker-rabbitmq-ha-cluster
 
-This folder structure contains the Dockerfiles for building RabbitMQ cluster with HAproxy running - the number of nodes are completely customizable using https://docs.docker.com/compose/[docker-compose] docker-compose.yml file.
+Prereqs:
+========
+Docker and Docker Compose - See https://docs.docker.com/engine/installation/ for the installation of the docker engine and compose
 
+Credits:
+========
+The docker-rabbitmq-cluster is based on https://github.com/bijukunjummen/docker-rabbitmq-cluster updated for rabbitmq v3.5.0
+
+Versions:
+=========
+RabbitMQ v3.5.0
+HAproxy v1.5
 
 Structure:
 ==========
+This folder structure contains the Dockerfiles for building RabbitMQ cluster with HAproxy running - the number of nodes are completely customizable using https://docs.docker.com/compose/[docker-compose] docker-compose.yml file.
+
 There are 3 folders.
 
 1. base - this is the base Dockerfile which builds on a CentOS image and installs the RabbitMQ binaries on the image
 2. server - This builds on the base image and has the startup script for bring up a RabbitMQ server
 3. cluster - This contains a https://docs.docker.com/compose/[docker-compose] definition file(docker-compose.yml) for brining up the rabbitmq cluster. Use `docker-compose up -d` to bring up the cluster.
-4 haproxy - this is the base Dockerfile which using the haproxy image and configures it using haproxy.cfg
+4. haproxy - this is the base Dockerfile which using the haproxy image and configures it using haproxy.cfg
 
 
-Running the Cluster:
+Running the HA Cluster:
 ===============================
-Once the images are built, boot up the cluster using the docker-compose.yml configuration provided in cluster folder:    
+Once the images are built, boot up the cluster using the docker-compose.yml configuration provided in cluster folder:
 
 [source]
 ----

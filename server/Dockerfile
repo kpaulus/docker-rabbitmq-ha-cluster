@@ -1,5 +1,4 @@
 FROM bijukunjummen/rabbitmq-base
-MAINTAINER Biju Kunjummen biju.kunjummen@gmail.com
 
 ADD rabbitmq.config /etc/rabbitmq/
 
@@ -16,7 +15,6 @@ RUN mkdir /opt/rabbit
 ADD startrabbit.sh /opt/rabbit/
 
 RUN chmod a+x /opt/rabbit/startrabbit.sh
-
 
 EXPOSE 5672
 EXPOSE 1883
